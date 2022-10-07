@@ -1,18 +1,16 @@
 <?php
 
-function diagonalDifference(array $array): int
+function diagonalDifference(array $matrix): int
 {
-    $primaryDiagonal = 0;
-    $secondaryDiagonal = 0;
-    $difference = 0;
-    $j = count($array) - 1;
-    for ($i = 0; $i < count($array); $i++) {
-        $primaryDiagonal += $array[$i][$i];
-        $secondaryDiagonal += $array[$i][$j];
-        $j--;
+    $length = count($matrix);
+    $left = 0;
+    $right = 0;
+
+    for ($i = 0; $i < $length; $i++) {
+        $j = $length - $i - 1;
+        $left += $matrix[$i][$i];
+        $right += $matrix[$i][$j];
     }
 
-    $difference = $primaryDiagonal - $secondaryDiagonal;
-
-    return abs($difference);
+    return abs($left - $right);
 }
