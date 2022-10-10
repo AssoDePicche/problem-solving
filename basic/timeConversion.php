@@ -2,52 +2,19 @@
 
 function timeConversion(string $s): string
 {
-    $date = explode(":", $s);
-    $hours = $date[0];
-    $minutes = $date[1];
-    $seconds = str_split($date[2], 2)[0];
-    $meridien = str_split($date[2], 2)[1];
+    $s = str_split($s);
+    $hours = $s[0] . $s[1];
+    $minutes = $s[3] . $s[4];
+    $seconds = $s[6] . $s[7];
+    $meridien = $s[8];
 
-    if ($meridien === "AM") {
-        $hours = ($hours === "12") ? "00" : $hours;
+    if ($hours >= 12 && $meridien === "A") {
+        $hours -= 12;
+        $hours = "0{$hours}";
     }
 
-    if ($meridien === "PM") {
-        switch ($hours) {
-            case "01":
-                $hours = "13";
-                break;
-            case "02":
-                $hours = "14";
-                break;
-            case "03":
-                $hours = "15";
-                break;
-            case "04":
-                $hours = "16";
-                break;
-            case "05":
-                $hours = "17";
-                break;
-            case "06":
-                $hours = "18";
-                break;
-            case "07":
-                $hours = "19";
-                break;
-            case "08":
-                $hours = "20";
-                break;
-            case "09":
-                $hours = "21";
-                break;
-            case "10":
-                $hours = "22";
-                break;
-            case "11":
-                $hours = "23";
-                break;
-        }
+    if ($hours < 12 && $meridien === "P") {
+        $hours += 12;
     }
 
     return "{$hours}:{$minutes}:{$seconds}";
