@@ -1,6 +1,6 @@
 <?php
 
-function getTotalX(array $a, array $b)
+function getTotalX(array $a, array $b): int
 {
     $numbers = range(max($a), min($b));
     $count = 0;
