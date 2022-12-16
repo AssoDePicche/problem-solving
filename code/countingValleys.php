@@ -5,18 +5,13 @@ function countingValleys(int $steps, string $path)
     $altitude = 0;
     $valleys = 0;
 
-    for ($i = 0; $i < $steps; $i++) {
-        if ($path[$i] === 'U') {
-            if ($altitude === -1) {
-                $valleys++;
-            }
-
+    for ($index = 0; $index < $steps; $index++) {
+        if ($path[$index] === 'U') {
+            $altitude === -1 && $valleys++;
             $altitude++;
         }
 
-        if ($path[$i] === 'D') {
-            $altitude--;
-        }
+        $path[$index] === 'D' && $altitude--;
     }
 
     return $valleys;
