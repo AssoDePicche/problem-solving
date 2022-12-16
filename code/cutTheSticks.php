@@ -2,11 +2,7 @@
 
 function filter(array $array): array
 {
-    return array_filter($array, function ($value) {
-        if ($value > 0) {
-            return $value;
-        }
-    });
+    return array_filter($array, fn ($value) => $value > 0);
 }
 
 function cutTheSticks(array $sticksLength): array
