@@ -7,14 +7,14 @@ function breakingRecords(array $scores): array
     $max = $scores[0];
     $min = $scores[0];
 
-    for ($i = 0; $i < count($scores); $i++) {
-        if ($scores[$i] > $max) {
-            $max = $scores[$i];
+    foreach ($scores as $score) {
+        if ($score > $max) {
+            $max = $score;
             $most++;
         }
 
-        if ($scores[$i] < $min) {
-            $min = $scores[$i];
+        if ($score < $min) {
+            $min = $score;
             $least++;
         }
     }
