@@ -1,6 +1,6 @@
 <?php
 
-function getMoneySpent(array $keyboards, array $drives, int $budget)
+function getMoneySpent(array $keyboards, array $drives, int $budget): int
 {
     $bills = [];
 
