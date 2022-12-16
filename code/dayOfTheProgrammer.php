@@ -2,20 +2,23 @@
 
 function dayOfProgrammer(int $year): string
 {
-    $validYear = ($year <= 2700 && $year >= 1700) ? true : false;
-    $gregorianCalendar = ($year > 1918) ? true : false;
-
-    if (!$validYear) {
+    if ($year < 1700 && $year > 2700) {
         return "Year out of range";
     }
 
     if ($year === 1918) {
-        return "26.09.{$year}";
+        return "26.09.1918";
     }
 
-    if (!$gregorianCalendar && $year !== 1918) {
-        return ($year % 4 === 0) ? "12.09.{$year}" : "13.09.{$year}";
+    $leapYear = $year % 4 === 0;
+
+    if ($year < 1918) {
+        return $leapYear ? "12.09." . $year : "13.09." . $year;
     }
 
-    return ($year % 400 === 0 || $year % 4 === 0 && $year % 100 !== 0) ? "12.09.{$year}" : "13.09.{$year}";
+    if ($year % 400 === 0 || $leapYear && $year % 100 !== 0) {
+        return "12.09." . $year;
+    }
+
+    return "13.09." . $year;
 }
