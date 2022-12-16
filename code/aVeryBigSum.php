@@ -3,9 +3,10 @@
 function aVeryBigSum(array $array): int
 {
     $sum = 0;
+    $length = count($array);
 
-    for ($i = 0; $i < count($array); $i++) {
-        $sum += $array[$i];
+    for ($index = 0; $index < $length; $index++) {
+        $sum += $array[$index];
     }
 
     return $sum;
