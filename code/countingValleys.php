@@ -1,6 +1,6 @@
 <?php
 
-function countingValleys(int $steps, string $path)
+function countingValleys(int $steps, string $path): int
 {
     $altitude = 0;
     $valleys = 0;
