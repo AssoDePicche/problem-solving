@@ -1,6 +1,6 @@
 <?php
 
-function bonAppetit(array $bill, int $k, int $b)
+function bonAppetit(array $bill, int $k, int $b): string|int
 {
     unset($bill[$k]);
 
