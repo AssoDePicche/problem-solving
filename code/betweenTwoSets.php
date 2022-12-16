@@ -22,7 +22,7 @@ function getTotalX(array $a, array $b): int
             }
         }
 
-        $count += ($match) ? 1 : 0;
+        $match && $count++;
     }
 
     return $count;
