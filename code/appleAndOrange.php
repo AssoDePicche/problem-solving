@@ -1,21 +1,22 @@
 <?php
 
+function isNearTheHouse(int $start, int $end, int $fruit): bool
+{
+    return $fruit >= $start && $fruit <= $end;
+}
+
 function countApplesAndOranges(int $s, int $t, int $a, int $b, array $apples, array $oranges): void
 {
     $applesInRange = 0;
     $orangesInRange = 0;
 
     foreach ($apples as $apple) {
-        if ($a + $apple >= $s && $a + $apple <= $t) {
-            $applesInRange++;
-        }
+        isNearTheHouse($s, $t, $a + $apple) && $applesInRange++;
     }
 
     foreach ($oranges as $orange) {
-        if ($b + $orange >= $s && $b + $orange <= $t) {
-            $orangesInRange++;
-        }
+        isNearTheHouse($s, $t, $b + $orange) && $orangesInRange++;
     }
 
-    printf("%d\n%d", $applesInRange, $orangesInRange);
+    printf("%d%s%d", $applesInRange, PHP_EOL, $orangesInRange);
 }
