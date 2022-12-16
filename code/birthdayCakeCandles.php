@@ -6,11 +6,8 @@ function birthdayCakeCandles(array $candles): int
     $max = max($candles);
 
     foreach ($candles as $candle) {
-        if ($candle === $max) {
-            $tallest++;
-        }
+        $candle === $max && $tallest++;
     }
-
 
     return $tallest;
 }
