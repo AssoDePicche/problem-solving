@@ -12,19 +12,12 @@ function reverse(int $x): int
     return (int) $reverse;
 }
 
-function absDiff(int $x, int $y): int
-{
-    return abs($x - $y);
-}
-
 function beautifulDays(int $i, int $j, int $k): int
 {
     $count = 0;
 
     for ($i; $i <= $j; $i++) {
-        if (absDiff($i, reverse($i)) % $k === 0) {
-            $count++;
-        }
+        (abs($i - reverse($i)) % $k === 0) && $count++;
     }
 
     return $count;
