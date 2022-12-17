@@ -7,13 +7,10 @@ function migratoryBirds(array $birds)
     $count = [];
 
     foreach ($birds as $bird) {
-        $count[$bird] = 0;
+        $count[$bird]++;
     }
 
-    foreach ($birds as $bird) {
-        $count[$bird]++;
-        $max = max($count);
-    }
+    $max = max($count);
 
     return array_search($max, $count);
 }
