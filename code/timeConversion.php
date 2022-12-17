@@ -10,12 +10,10 @@ function timeConversion(string $s): string
 
     if ($hours >= 12 && $meridien === "A") {
         $hours -= 12;
-        $hours = "0{$hours}";
+        $hours = "0" . $hours;
     }
 
-    if ($hours < 12 && $meridien === "P") {
-        $hours += 12;
-    }
+    $hours < 12 && $meridien === "P" && $hours += 12;
 
-    return "{$hours}:{$minutes}:{$seconds}";
+    return $hours . ":" . $minutes . ":" . $seconds;
 }
