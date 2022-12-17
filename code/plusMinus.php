@@ -8,17 +8,9 @@ function plusMinus(array $numbers): void
     $total = count($numbers);
 
     foreach ($numbers as $number) {
-        if ($number < 0) {
-            $negatives++;
-        }
-
-        if ($number > 0) {
-            $positives++;
-        }
-
-        if ($number === 0) {
-            $zeros++;
-        }
+        $number < 0 && $negatives++;
+        $number > 0 && $positives++;
+        $number === 0 && $zeros++;
     }
 
     echo number_format($positives / $total, 6) . PHP_EOL;
