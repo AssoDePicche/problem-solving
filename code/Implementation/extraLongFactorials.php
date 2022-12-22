@@ -6,5 +6,5 @@ function extraLongFactorials(int $n): void
         $factorial = bcmul($factorial, $n);
     }
 
-    printf("%s", $factorial);
+    echo $factorial;
 }

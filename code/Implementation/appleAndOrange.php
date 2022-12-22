@@ -8,6 +8,7 @@ function isNearTheHouse(int $start, int $end, int $fruit): bool
 function countApplesAndOranges(int $s, int $t, int $a, int $b, array $apples, array $oranges): void
 {
     $applesInRange = 0;
+
     $orangesInRange = 0;
 
     foreach ($apples as $apple) {
@@ -18,5 +19,5 @@ function countApplesAndOranges(int $s, int $t, int $a, int $b, array $apples, ar
         isNearTheHouse($s, $t, $b + $orange) && $orangesInRange++;
     }
 
-    printf("%d%s%d", $applesInRange, PHP_EOL, $orangesInRange);
+    echo $applesInRange . PHP_EOL . $orangesInRange;
 }

@@ -6,7 +6,7 @@ function getMoneySpent(array $keyboards, array $drives, int $budget): int
 
     foreach ($keyboards as $k) {
         foreach ($drives as $drive) {
-            $bills[] = (($k + $drive) <= $budget) ? $k + $drive : 0;
+            $bills[] = ($k + $drive) <= $budget ? $k + $drive : 0;
         }
     }
 

@@ -15,11 +15,15 @@ function formingMagicSquare(array $square): int
 
     $max = PHP_INT_MAX;
 
-    for ($i = 0; $i < count($magicSquares); $i++) {
+    $numberOfMagicSquares = count($magicSquares);
+
+    $squares = count($square);
+
+    for ($i = 0; $i < $numberOfMagicSquares; $i++) {
         $min = 0;
 
-        for ($line = 0; $line < count($square); $line++) {
-            for ($column = 0; $column < count($square); $column++) {
+        for ($line = 0; $line < $squares; $line++) {
+            for ($column = 0; $column < $squares; $column++) {
                 $min += abs($square[$line][$column] - $magicSquares[$i][$line][$column]);
             }
         }

@@ -8,5 +8,5 @@ function angryProfessor(int $threshold, array $arrivalTime): string
         $delay <= 0 && $inTime++;
     }
 
-    return $inTime < $threshold ? "YES" : "NO";
+    return $inTime < $threshold ? 'YES' : 'NO';
 }

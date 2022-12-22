@@ -3,7 +3,8 @@
 function reverse(int $x): int
 {
     $x = (string) $x;
-    $reverse = "";
+
+    $reverse = '';
 
     for ($index = strlen($x) - 1; $index >= 0; $index--) {
         $reverse .= $x[$index];

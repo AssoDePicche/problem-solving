@@ -6,5 +6,5 @@ function bonAppetit(array $bill, int $k, int $b): string|int
 
     $cost = array_sum($bill) / 2;
 
-    return ($b === $cost) ? "Bon Appetit" : abs($b - $cost);
+    return ($b === $cost) ? 'Bon Appetit' : abs($b - $cost);
 }

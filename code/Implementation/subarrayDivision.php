@@ -3,7 +3,9 @@
 function birthday(array $s, int $d, $m): int
 {
     $sum = 0;
+
     $ways = 0;
+
     $length = count($s);
 
     for ($i = 0; $i <= $length - $m; $i++) {
@@ -12,6 +14,7 @@ function birthday(array $s, int $d, $m): int
         }
 
         $sum === $d && $ways++;
+
         $sum = 0;
     }
 

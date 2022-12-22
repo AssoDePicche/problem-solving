@@ -2,21 +2,26 @@
 
 function encryption(string $s)
 {
-    $s = str_replace(" ", "", $s);
+    $s = str_replace(' ', '', $s);
+
     $length = strlen($s);
+
     $columns = ceil(sqrt($length));
-    $encryption = "";
+
+    $encryption = '';
 
     for ($i = 0; $i < $columns; $i++) {
         $char = $i;
-        $str = "";
+
+        $str = '';
 
         while ($char < $length) {
             $str .= $s[$char];
+
             $char += $columns;
         }
 
-        $encryption .= $str . " ";
+        $encryption .= $str . ' ';
     }
 
     return $encryption;
