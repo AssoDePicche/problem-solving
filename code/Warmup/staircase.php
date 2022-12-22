@@ -2,16 +2,17 @@
 
 function staircase(int $n): void
 {
-    $pounds = "";
+    $pounds = '';
 
     for ($i = 1; $i <= $n; $i++) {
-        $spaces = "";
-        $pounds .= "#";
+        $spaces = '';
+
+        $pounds .= '#';
 
         for ($j = 0; $j < $n - $i; $j++) {
-            $spaces .= " ";
+            $spaces .= ' ';
         }
 
-        printf("%s%s\n", $spaces, $pounds);
+        echo $spaces . $pounds . PHP_EOL;
     }
 }

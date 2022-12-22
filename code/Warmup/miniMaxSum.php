@@ -3,13 +3,17 @@
 function miniMaxSum(array $numbers): void
 {
     $min = min($numbers);
+
     $max = max($numbers);
+
     $minSum = 0;
+
     $maxSum = 0;
 
     foreach ($numbers as $number) {
         if ($min === $max) {
             $maxSum = array_sum($numbers) - $max;
+
             $minSum = $maxSum;
         }
 
@@ -22,5 +26,5 @@ function miniMaxSum(array $numbers): void
         }
     }
 
-    printf("%d %d", $minSum, $maxSum);
+    echo $minSum . ' ' . $maxSum;
 }
