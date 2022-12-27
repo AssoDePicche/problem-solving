@@ -3,6 +3,7 @@
 function findDigits(int $n): int
 {
     $divisors = 0;
+
     $digits = str_split((string) $n);
 
     foreach ($digits as $digit) {
