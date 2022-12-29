@@ -4,6 +4,7 @@ Codes used during my preparation to earn my five-star troubleshooting medal in H
 
 ## Topics
 
+- [Data Structures](code/Data%20Structures/)
 - [Warmup](code/Warmup/)
 - [Implementation](code/Implementation/)
 - [Strings](code/Strings)
