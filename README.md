@@ -1,6 +1,6 @@
 # Problem Solving
 
-Codes used during my preparation to earn my five-star troubleshooting medal in HackerRank
+Codes used during my preparation to earn my five-star medal in problem solving in HackerRank
 
 ## Topics
 
