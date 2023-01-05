@@ -11,20 +11,16 @@ function miniMaxSum(array $numbers): void
     $maxSum = 0;
 
     foreach ($numbers as $number) {
+        $number < $max && $minSum += $number;
+
+        $number > $min && $maxSum += $number;
+
         if ($min === $max) {
             $maxSum = array_sum($numbers) - $max;
 
             $minSum = $maxSum;
         }
-
-        if ($number < $max) {
-            $minSum += $number;
-        }
-
-        if ($number > $min) {
-            $maxSum += $number;
-        }
     }
 
-    echo $minSum . ' ' . $maxSum;
+    printf("%d %d", $minSum, $maxSum);
 }
