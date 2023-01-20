@@ -34,4 +34,3 @@ $result = reverseArray($array);
 fwrite($fptr, implode(' ', $result) . PHP_EOL);
 
 fclose($fptr);
-
