@@ -20,13 +20,11 @@ function insertionSort1(int $n, array $a): void
 
         if ($a[$n] > $x) {
             $a[$n + 1] = $a[$n];
-
-            printArray($a);
-
-            continue;
         }
 
-        $a[$n + 1] = $x;
+        if ($a[$n] < $x) {
+            $a[$n + 1] = $x;
+        }
 
         printArray($a);
 
@@ -41,3 +39,11 @@ function insertionSort1(int $n, array $a): void
         printArray($a);
     }
 }
+
+$n = intval(trim(fgets(STDIN)));
+
+$temp = rtrim(fgets(STDIN));
+
+$array = array_map('intval', preg_split('/ /', $temp, -1, PREG_SPLIT_NO_EMPTY));
+
+insertionSort1($n, $array);
