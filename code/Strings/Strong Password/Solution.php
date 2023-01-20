@@ -14,3 +14,15 @@ function minimumNumber(int $n, string $password): int
 
     return ($minimum + $n) < 6 ? $minimum + 6 - ($minimum + $n) : $minimum;
 }
+
+$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
+
+$n = intval(trim(fgets(STDIN)));
+
+$password = rtrim(fgets(STDIN), "\r\n");
+
+$answer = minimumNumber($n, $password);
+
+fwrite($fptr, $answer . PHP_EOL);
+
+fclose($fptr);
