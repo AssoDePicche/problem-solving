@@ -22,3 +22,13 @@ function timeConversion(string $s): string
 
     return $hours . ':' . $minutes . ':' . $seconds;
 }
+
+$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
+
+$s = rtrim(fgets(STDIN), "\r\n");
+
+$result = timeConversion($s);
+
+fwrite($fptr, $result . PHP_EOL);
+
+fclose($fptr);

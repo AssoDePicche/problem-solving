@@ -9,10 +9,12 @@ function staircase(int $n): void
 
         $pounds .= '#';
 
-        for ($j = 0; $j < $n - $i; $j++) {
-            $spaces .= ' ';
-        }
+        $spaces .= str_repeat(' ', $n - $i);
 
         echo $spaces . $pounds . PHP_EOL;
     }
 }
+
+$n = intval(trim(fgets(STDIN)));
+
+staircase($n);

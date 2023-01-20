@@ -6,9 +6,7 @@ function miniMaxSum(array $numbers): void
 
     $max = max($numbers);
 
-    $minSum = 0;
-
-    $maxSum = 0;
+    $minSum = $maxSum = 0;
 
     foreach ($numbers as $number) {
         $number < $max && $minSum += $number;
@@ -22,5 +20,11 @@ function miniMaxSum(array $numbers): void
         }
     }
 
-    printf("%d %d", $minSum, $maxSum);
+    echo $minSum . ' ' . $maxSum;
 }
+
+$temp = rtrim(fgets(STDIN));
+
+$array = array_map('intval', preg_split('/ /', $temp, -1, PREG_SPLIT_NO_EMPTY));
+
+miniMaxSum($array);
