@@ -18,7 +18,9 @@ function insertionSort(array $list, int $size)
 
         while ($j >= 0 && $list[$j] > $temp) {
             $list[$j + 1] = $list[$j];
+
             $j = $j - 1;
+
             printArray($list, $size);
         }
 
