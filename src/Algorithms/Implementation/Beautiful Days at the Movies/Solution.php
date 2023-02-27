@@ -1,16 +1,13 @@
 <?php
 
-function reverse(int $x): int
+function reverse(int $integer): int
 {
-    $x = strval($x);
+    return (int) strrev($integer);
+}
 
-    $reverse = '';
-
-    for ($index = strlen($x) - 1; $index >= 0; $index--) {
-        $reverse .= $x[$index];
-    }
-
-    return intval($reverse);
+function isABeautifulNumber(int $i, int $k): bool
+{
+    return abs($i - reverse($i)) % $k === 0;
 }
 
 function beautifulDays(int $i, int $j, int $k): int
@@ -18,7 +15,7 @@ function beautifulDays(int $i, int $j, int $k): int
     $count = 0;
 
     for ($i; $i <= $j; $i++) {
-        (abs($i - reverse($i)) % $k === 0) && $count++;
+        isABeautifulNumber($i, $k) && $count++;
     }
 
     return $count;
