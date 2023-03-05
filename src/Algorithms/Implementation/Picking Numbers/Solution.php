@@ -1,35 +1,26 @@
 <?php
 
-function frequency(array $search, int $n): array
+function pickingNumbers(array $list): int
 {
-    $range = range(0, $n);
+    $max = PHP_INT_MIN;
 
-    $elementsInRange = count($range);
+    sort($list);
 
-    $searchLength = count($search);
+    $size = count($list);
 
-    $frequency = array_fill(0, $elementsInRange, 0);
+    for ($i = 0; $i < $size; $i++) {
+        $count = 0;
 
-    for ($index = 0; $index < $searchLength; $index++) {
-        $frequency[$search[$index]]++;
+        for ($j = $i + 1; $j < $size; $j++) {
+            $difference = abs($list[$i] - $list[$j]);
+
+            $count += intval($difference <= 1);
+        }
+
+        $max = max($max, $count);
     }
 
-    return $frequency;
-}
-
-function pickingNumbers(array $a): int
-{
-    $frequency = frequency($a, 100);
-
-    $frequencyLength = count($frequency);
-
-    $maxLengthSubarray = 0;
-
-    for ($j = 1; $j < $frequencyLength; $j++) {
-        $maxLengthSubarray = max($maxLengthSubarray, $frequency[$j] + $frequency[$j - 1]);
-    }
-
-    return $maxLengthSubarray;
+    return $max + 1;
 }
 
 $fptr = fopen(getenv('OUTPUT_PATH'), 'w');
