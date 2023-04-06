@@ -2,7 +2,29 @@
 
 HackerRank's problem-solving challenges.
 
-## Algorithms
+## Project Structure
+
+1. `src:`source code
+
+## Contributing
+
+To contribuit to this project [follow these steps](./CONTRIBUTING).
+
+## Getting started
+
+1. Clone this repository
+
+```bash
+git clone git@github.com:AssoDePicche/c.git
+```
+
+## Get in touch
+
+Samuel do Prado Rodrigues (AssoDePicche) - samuelprado730@gmail.com
+
+## Topics
+
+### Algorithms
 
 - [Warmup](code/Algorithms/Warmup/)
 - [Implementation](code/Algorithms/Implementation/)
@@ -19,7 +41,7 @@ HackerRank's problem-solving challenges.
 - [NP Complete](code/Algorithms/NP%20Complete/)
 - [Debugging](code/Algorithms/Debugging)
 
-## Data Structure
+### Data Structure
 
 - [Advanced](code/Data%20Structure/Advanced/)
 - [Arrays](code/Data%20Structure/Arrays/)
