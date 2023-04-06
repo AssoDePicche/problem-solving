@@ -15,7 +15,7 @@ To contribuit to this project [follow these steps](./CONTRIBUTING).
 1. Clone this repository
 
 ```bash
-git clone git@github.com:AssoDePicche/c.git
+git clone git@github.com:AssoDePicche/problem-solving.git
 ```
 
 ## Get in touch
