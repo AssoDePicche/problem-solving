@@ -6,6 +6,8 @@ function plusMinus(array $numbers): void
 
     $total = count($numbers);
 
+    $ratioOf = fn (int $n) => number_format(($n / $total), 6) . PHP_EOL;
+
     foreach ($numbers as $number) {
         $number < 0 && $negatives++;
 
@@ -14,11 +16,11 @@ function plusMinus(array $numbers): void
         $number === 0 && $zeros++;
     }
 
-    echo number_format($positives / $total, 6) . PHP_EOL;
+    echo $ratioOf($positives);
 
-    echo number_format($negatives / $total, 6) . PHP_EOL;
+    echo $ratioOf($negatives);
 
-    echo number_format($zeros / $total, 6) . PHP_EOL;
+    echo $ratioOf($zeros);
 }
 
 $n = intval(trim(fgets(STDIN)));
