@@ -1,42 +1,68 @@
 <?php
 
-function libraryFine(int $d1, int $m1, int $y1, int $d2, int $m2, int $y2): int
-{
-    if ($y1 > $y2) {
-        return 10000;
+define('MAXIMUM_FINE', 10000);
+
+define('FINE_PER_DAY_LATE', 15);
+
+define('FINE_PER_MONTH_LATE', 500);
+
+function libraryFine(
+    int $day,
+    int $month,
+    int $year,
+    int $day2,
+    int $month2,
+    int $year2
+): int {
+    if (isOneOrMoreYearsLate($year, $year2)) {
+        return MAXIMUM_FINE;
     }
 
-    if ($y1 < $y2 || $d1 > $d2 && $m1 < $m2 || $d1 <= $d2 && $m1 <= $m2) {
+    if (itHasBeenReturnedEarly(
+        $day,
+        $month,
+        $year,
+        $day2,
+        $month2,
+        $year2
+    )) {
         return 0;
     }
 
-    if ($m1 === $m2) {
-        return 15 * ($d1 - $d2);
+    if (itWasReturnedDaysLate($month, $month2)) {
+        return FINE_PER_DAY_LATE * daysLate($day, $day2);
     }
 
-    return 500 * ($m1 - $m2);
+    return FINE_PER_MONTH_LATE * monthsLate($month, $month2);
 }
 
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
+function isOneOrMoreYearsLate(int $year, int $year2): bool
+{
+    return $year > $year2;
+}
 
-$first_multiple_input = explode(' ', rtrim(fgets(STDIN)));
+function itHasBeenReturnedEarly(
+    int $day,
+    int $month,
+    int $year,
+    int $day2,
+    int $month2,
+    int $year2
+): bool {
+    return ($year < $year2) || ($day > $day2) && ($month < $month2) || ($day <= $day2) && ($month <= $month2);
+}
 
-$d1 = intval($first_multiple_input[0]);
+function itWasReturnedDaysLate(int $month, int $month2): bool
+{
+    return $month === $month2;
+}
 
-$m1 = intval($first_multiple_input[1]);
+function daysLate(int $day, int $day2): int
+{
+    return $day - $day2;
+}
 
-$y1 = intval($first_multiple_input[2]);
-
-$second_multiple_input = explode(' ', rtrim(fgets(STDIN)));
-
-$d2 = intval($second_multiple_input[0]);
-
-$m2 = intval($second_multiple_input[1]);
-
-$y2 = intval($second_multiple_input[2]);
-
-$result = libraryFine($d1, $m1, $y1, $d2, $m2, $y2);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
+function monthsLate(int $month, int $month2): int
+{
+    return $month - $month2;
+}
