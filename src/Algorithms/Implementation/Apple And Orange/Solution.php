@@ -1,51 +1,70 @@
 <?php
 
-function isNearTheHouse(int $start, int $end, int $fruit): bool
-{
-    return $fruit >= $start && $fruit <= $end;
+function isNearTheHouse(
+    int $houseStartingPoint,
+    int $houseEndpoint,
+    int $distance
+): bool {
+    return ($distance >= $houseStartingPoint) && ($distance <= $houseEndpoint);
 }
 
-function countApplesAndOranges(int $s, int $t, int $a, int $b, array $apples, array $oranges): void
-{
+function applesInRange(
+    int $houseStartingPoint,
+    int $houseEndpoint,
+    int $appleTreeLocation,
+    array $appleDistances
+): int {
     $applesInRange = 0;
 
-    $orangesInRange = 0;
-
-    foreach ($apples as $apple) {
-        isNearTheHouse($s, $t, $a + $apple) && $applesInRange++;
+    foreach ($appleDistances as $appleDistance) {
+        isNearTheHouse(
+            $houseStartingPoint,
+            $houseEndpoint,
+            $appleTreeLocation + $appleDistance
+        ) && $applesInRange++;
     }
 
-    foreach ($oranges as $orange) {
-        isNearTheHouse($s, $t, $b + $orange) && $orangesInRange++;
-    }
-
-    echo $applesInRange . PHP_EOL . $orangesInRange;
+    return $applesInRange;
 }
 
-$first_multiple_input = explode(' ', rtrim(fgets(STDIN)));
+function orangesInRange(
+    int $houseStartingPoint,
+    int $houseEndpoint,
+    int $orangeTreeLocation,
+    array $orangeDistances
+): int {
+    $orangesInRange = 0;
 
-$s = intval($first_multiple_input[0]);
+    foreach ($orangeDistances as $orangeDistance) {
+        isNearTheHouse(
+            $houseStartingPoint,
+            $houseEndpoint,
+            $orangeTreeLocation + $orangeDistance
+        ) && $orangesInRange++;
+    }
 
-$t = intval($first_multiple_input[1]);
+    return $orangesInRange;
+}
 
-$second_multiple_input = explode(' ', rtrim(fgets(STDIN)));
+function countApplesAndOranges(
+    int $houseStartingPoint,
+    int $houseEndpoint,
+    int $appleTreeLocation,
+    int $orangeTreeLocation,
+    array $appleDistances,
+    array $orangeDistances
+): void {
+    echo applesInRange(
+        $houseStartingPoint,
+        $houseEndpoint,
+        $appleTreeLocation,
+        $appleDistances
+    ) . PHP_EOL;
 
-$a = intval($second_multiple_input[0]);
-
-$b = intval($second_multiple_input[1]);
-
-$third_multiple_input = explode(' ', rtrim(fgets(STDIN)));
-
-$m = intval($third_multiple_input[0]);
-
-$n = intval($third_multiple_input[1]);
-
-$apples_temp = rtrim(fgets(STDIN));
-
-$apples = array_map('intval', preg_split('/ /', $apples_temp, -1, PREG_SPLIT_NO_EMPTY));
-
-$oranges_temp = rtrim(fgets(STDIN));
-
-$oranges = array_map('intval', preg_split('/ /', $oranges_temp, -1, PREG_SPLIT_NO_EMPTY));
-
-countApplesAndOranges($s, $t, $a, $b, $apples, $oranges);
+    echo orangesInRange(
+        $houseStartingPoint,
+        $houseEndpoint,
+        $orangeTreeLocation,
+        $orangeDistances
+    ) . PHP_EOL;
+}
