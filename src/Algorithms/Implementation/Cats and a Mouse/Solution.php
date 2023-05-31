@@ -1,43 +1,36 @@
 <?php
 
-function catAndMouse(int $catA, int $catB, int $mouse): string
+function distanceFromCatToMouse(int $mousePosition, int $catPosition): int
 {
-    $d1 = abs($mouse - $catA);
+    return abs($mousePosition - $catPosition);
+}
 
-    $d2 = abs($mouse - $catB);
+function theMouseEscapes(int $firstCatDistanceToMouse, int $secondCatDistanceToMouse): bool
+{
+    return ($firstCatDistanceToMouse === $secondCatDistanceToMouse);
+}
 
-    if ($d1 === $d2) {
+function firstCatCatchesTheMouseFirst(int $firstCatDistanceToMouse, int $secondCatDistanceToMouse): bool
+{
+    return ($firstCatDistanceToMouse < $secondCatDistanceToMouse);
+}
+
+function catAndMouse(
+    int $firstCatPosition,
+    int $secondCatPosition,
+    int $mousePostion
+): string {
+    $firstCatDistanceToMouse = distanceFromCatToMouse($mousePostion, $firstCatPosition);
+
+    $secondCatDistanceToMouse = distanceFromCatToMouse($mousePostion, $secondCatPosition);
+
+    if (theMouseEscapes($firstCatDistanceToMouse, $secondCatDistanceToMouse)) {
         return 'Mouse C';
     }
 
-    if ($d1 < $d2) {
+    if (firstCatCatchesTheMouseFirst($firstCatDistanceToMouse, $secondCatDistanceToMouse)) {
         return 'Cat A';
     }
 
     return 'Cat B';
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$stdin = fopen('php://stdin', 'r');
-
-fscanf($stdin, "%d\n", $q);
-
-for ($q_itr = 0; $q_itr < $q; $q_itr++) {
-    fscanf($stdin, "%[^\n]", $xyz_temp);
-    $xyz = explode(' ', $xyz_temp);
-
-    $x = intval($xyz[0]);
-
-    $y = intval($xyz[1]);
-
-    $z = intval($xyz[2]);
-
-    $result = catAndMouse($x, $y, $z);
-
-    fwrite($fptr, $result . PHP_EOL);
-}
-
-fclose($stdin);
-
-fclose($fptr);
