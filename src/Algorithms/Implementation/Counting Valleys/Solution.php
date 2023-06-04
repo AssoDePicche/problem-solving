@@ -1,32 +1,27 @@
 <?php
 
+define('STEP_DOWN', 'D');
+
+function crossedAValley(int $altitude): bool
+{
+    return ($altitude === -1);
+}
+
 function countingValleys(int $steps, string $path): int
 {
-    $altitude = $valleys = 0;
+    $altitude = $traversedValleys = 0;
 
-    for ($index = 0; $index < $steps; $index++) {
-        if ($path[$index] === 'D') {
+    for ($index = 0; $index < $steps; ++$index) {
+        if ($path[$index] === STEP_DOWN) {
             $altitude--;
 
             continue;
         }
 
-        $altitude === -1 && $valleys++;
+        crossedAValley($altitude) && $traversedValleys++;
 
         $altitude++;
     }
 
-    return $valleys;
+    return $traversedValleys;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$steps = intval(trim(fgets(STDIN)));
-
-$path = rtrim(fgets(STDIN), "\r\n");
-
-$result = countingValleys($steps, $path);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
