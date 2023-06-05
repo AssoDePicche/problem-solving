@@ -1,34 +1,50 @@
 <?php
 
+function inTimeMachineRange(int $year): bool
+{
+    return ($year >= 1700) && ($year <= 2700);
+}
+
+function isCalendarTransitionYear(int $year): bool
+{
+    return ($year === 1918);
+}
+
+function inJulianCalendar(int $year): bool
+{
+    return ($year < 1918);
+}
+
+function isJulianLeapYear(int $year): bool
+{
+    return inJulianCalendar($year) && (($year % 4) === 0);
+}
+
+function isGregorianLeapYear(int $year): bool
+{
+    if (inJulianCalendar($year)) {
+        return false;
+    }
+
+    return (($year % 400) === 0) || (($year % 4) === 0) && (($year % 100) !== 0);
+}
+
+function isALeapYear(int $year): bool
+{
+    return isJulianLeapYear($year) || isGregorianLeapYear($year);
+}
+
 function dayOfProgrammer(int $year): string
 {
-    if ($year < 1700 && $year > 2700) {
+    if (!inTimeMachineRange($year)) {
         return 'Year out of range';
     }
 
-    if ($year === 1918) {
+    if (isCalendarTransitionYear($year)) {
         return '26.09.1918';
     }
 
-    $leapYear = $year % 4 === 0;
+    $day = isALeapYear($year) ? '12' : '13';
 
-    if ($year < 1918) {
-        return $leapYear ? '12.09.' . $year : '13.09.' . $year;
-    }
-
-    if ($year % 400 === 0 || $leapYear && $year % 100 !== 0) {
-        return '12.09.' . $year;
-    }
-
-    return '13.09.' . $year;
+    return sprintf('%d.09.%d', $day, $year);
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$year = intval(trim(fgets(STDIN)));
-
-$result = dayOfProgrammer($year);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
