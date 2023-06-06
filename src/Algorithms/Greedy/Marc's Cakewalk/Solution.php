@@ -1,34 +1,18 @@
 <?php
 
-function marcsCakewalk(array $calorie): int
+function marcsCakewalk(array $cupcakesCalories): int
 {
-    sort($calorie);
+    rsort($cupcakesCalories);
 
-    $i = $miles = 0;
+    $minimumMilesToWalk = 0;
 
-    $j = count($calorie) - 1;
+    $cupcakes = count($cupcakesCalories);
 
-    while ($j >= 0) {
-        $miles += $calorie[$j] * (pow(2, $i));
+    for ($index = 0; $index < $cupcakes; ++$index) {
+        $distanceToBurnCalories = $cupcakesCalories[$index] * pow(2, $index);
 
-        $j--;
-
-        $i++;
+        $minimumMilesToWalk += $distanceToBurnCalories;
     }
 
-    return $miles;
+    return $minimumMilesToWalk;
 }
-
-$fptr = fopen(getenv("OUTPUT_PATH"), "w");
-
-$n = intval(trim(fgets(STDIN)));
-
-$calorie_temp = rtrim(fgets(STDIN));
-
-$calorie = array_map('intval', preg_split('/ /', $calorie_temp, -1, PREG_SPLIT_NO_EMPTY));
-
-$result = marcsCakewalk($calorie);
-
-fwrite($fptr, $result . "\n");
-
-fclose($fptr);
