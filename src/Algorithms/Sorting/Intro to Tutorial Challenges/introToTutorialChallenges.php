@@ -7,7 +7,7 @@ function introTutorial(int $needle, array $haystack): int
     $high = count($haystack);
 
     do {
-        $middle = floor($low + ($high - $low) / 2);
+        $middle = floor(($low + $high) / 2);
 
         $value = $haystack[$middle];
 
