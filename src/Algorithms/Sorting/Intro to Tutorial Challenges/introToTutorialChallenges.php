@@ -1,28 +1,24 @@
 <?php
 
-function introTutorial(int $v, array $array): int
+function introTutorial(int $needle, array $haystack): int
 {
-    $length = count($array);
+    $low = 0;
 
-    for ($index = 0; $index < $length; $index++) {
-        if ($array[$index] === $v) {
-            return $index;
+    $high = count($haystack);
+
+    do {
+        $middle = floor($low + ($high - $low) / 2);
+
+        $value = $haystack[$middle];
+
+        if ($value === $needle) {
+            return $middle;
+        } else if ($needle > $value) {
+            $low = $middle + 1;
+        } else {
+            $high = $middle;
         }
-    }
+    } while ($low < $high);
+
+    return -1;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$V = intval(trim(fgets(STDIN)));
-
-$n = intval(trim(fgets(STDIN)));
-
-$arr_temp = rtrim(fgets(STDIN));
-
-$arr = array_map('intval', preg_split('/ /', $arr_temp, -1, PREG_SPLIT_NO_EMPTY));
-
-$result = introTutorial($V, $arr);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
