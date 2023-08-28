@@ -1,24 +1,17 @@
 <?php
 
-function pageCount(int $n, int $p): int
+function pageCount(int $numberOfBookPages, int $pageNumberToReach): int
 {
-    $right = $n % 2 === 1 ? $n - $p : $n - $p + 1;
+    $pageNumberDifference = ($numberOfBookPages - $pageNumberToReach);
 
-    $right /= 2;
+    $isOddNumberOfPages = ($numberOfBookPages % 2) !== 0;
 
-    $left = $p / 2;
+    $rightSideTurns = ($isOddNumberOfPages ?
+        $pageNumberDifference :
+        $pageNumberDifference + 1
+    ) / 2;
 
-    return min($left, $right);
+    $leftSideTurns = ($pageNumberToReach / 2);
+
+    return (int) min($leftSideTurns, $rightSideTurns);
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$n = intval(trim(fgets(STDIN)));
-
-$p = intval(trim(fgets(STDIN)));
-
-$result = pageCount($n, $p);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
