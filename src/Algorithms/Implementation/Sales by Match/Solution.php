@@ -1,34 +1,22 @@
 <?php
 
-function sockMerchant(int $n, array $array): int
+function sockMerchant(int $numberOfSocks, array $socks): int
 {
-    $pairs = [];
+    $socksCounts = [];
 
-    $result = 0;
+    $pairCount = 0;
 
-    foreach ($array as $item) {
-        $pairs[$item]++;
+    for ($index = 0; $index < $numberOfSocks; ++$index) {
+        $sock = $socks[$index];
+
+        if (!isset($socksCounts[$sock])) {
+            $socksCounts[$sock] = 0;
+        }
+
+        ++$socksCounts[$sock];
+
+        $socksCounts[$sock] % 2 === 0 && ++$pairCount;
     }
 
-    foreach ($pairs as $pair) {
-        $pair % 2 !== 0 && $pair--;
-
-        $result += $pair;
-    }
-
-    return $result / 2;
+    return $pairCount;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$n = intval(trim(fgets(STDIN)));
-
-$ar_temp = rtrim(fgets(STDIN));
-
-$ar = array_map('intval', preg_split('/ /', $ar_temp, -1, PREG_SPLIT_NO_EMPTY));
-
-$result = sockMerchant($n, $ar);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
