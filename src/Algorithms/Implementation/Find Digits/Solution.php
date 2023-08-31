@@ -1,32 +1,22 @@
 <?php
 
-function findDigits(int $n): int
+function findDigits(int $number): int
 {
-    $divisors = 0;
+    $numberOfDigitsInNumberThatAreDivisorsOfNumber = 0;
 
-    $digits = str_split(strval($n));
+    $currentNumberWithoutLastDigit = $number;
 
-    foreach ($digits as $digit) {
-        if ($digit === '0') {
+    while ($currentNumberWithoutLastDigit != 0) {
+        $currentDigit = ($currentNumberWithoutLastDigit % 10);
+
+        $currentNumberWithoutLastDigit /= 10;
+
+        if ($currentDigit === 0) {
             continue;
         }
 
-        $n % $digit === 0 && $divisors++;
+        $number % $currentDigit === 0 && ++$numberOfDigitsInNumberThatAreDivisorsOfNumber;
     }
 
-    return $divisors;
+    return $numberOfDigitsInNumberThatAreDivisorsOfNumber;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$t = intval(trim(fgets(STDIN)));
-
-for ($t_itr = 0; $t_itr < $t; $t_itr++) {
-    $n = intval(trim(fgets(STDIN)));
-
-    $result = findDigits($n);
-
-    fwrite($fptr, $result . PHP_EOL);
-}
-
-fclose($fptr);
