@@ -1,20 +1,14 @@
 <?php
 
-function staircase(int $n): void
+function staircase(int $numberOfStairs): void
 {
-    $pounds = '';
+    $space = ' ';
 
-    for ($i = 1; $i <= $n; $i++) {
-        $spaces = '';
+    $numberSign = '#';
 
-        $pounds .= '#';
+    for ($currentStair = 1; $currentStair <= $numberOfStairs; ++$currentStair) {
+        echo str_repeat($space, $numberOfStairs - $currentStair);
 
-        $spaces .= str_repeat(' ', $n - $i);
-
-        echo $spaces . $pounds . PHP_EOL;
+        echo str_repeat($numberSign, $currentStair) . PHP_EOL;
     }
 }
-
-$n = intval(trim(fgets(STDIN)));
-
-staircase($n);
