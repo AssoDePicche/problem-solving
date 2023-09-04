@@ -1,32 +1,24 @@
 <?php
 
-function utopianTree(int $cycles): int
-{
-    $height = 1;
+define('INITIAL_TREE_HEIGHT', 1);
 
-    for ($i = 1; $i <= $cycles; $i++) {
-        if ($i % 2 === 0) {
-            $height++;
+define('HEIGHT_INCREMENT_IN_SUMMER', 1);
+
+function utopianTree(int $growthCyclesToSimulate): int
+{
+    $treeHeight = INITIAL_TREE_HEIGHT;
+
+    for ($cycle = 1; $cycle <= $growthCyclesToSimulate; ++$cycle) {
+        $isSummerCycle = ($cycle % 2 === 0);
+
+        if ($isSummerCycle) {
+            $treeHeight += HEIGHT_INCREMENT_IN_SUMMER;
 
             continue;
         }
 
-        $height *= 2;
+        $treeHeight *= 2;
     }
 
-    return $height;
+    return $treeHeight;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$t = intval(trim(fgets(STDIN)));
-
-for ($t_itr = 0; $t_itr < $t; $t_itr++) {
-    $n = intval(trim(fgets(STDIN)));
-
-    $result = utopianTree($n);
-
-    fwrite($fptr, $result . PHP_EOL);
-}
-
-fclose($fptr);
