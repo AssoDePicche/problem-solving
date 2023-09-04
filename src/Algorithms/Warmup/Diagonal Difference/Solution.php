@@ -2,35 +2,17 @@
 
 function diagonalDifference(array $matrix): int
 {
-    $length = count($matrix);
+    $matrixSize = count($matrix);
 
-    $left = $right = 0;
+    $primaryDiagonalSum = 0;
 
-    for ($i = 0; $i < $length; $i++) {
-        $j = $length - $i - 1;
+    $secondaryDiagonalSum = 0;
 
-        $left += $matrix[$i][$i];
+    for ($row = 0; $row < $matrixSize; ++$row) {
+        $primaryDiagonalSum += $matrix[$row][$row];
 
-        $right += $matrix[$i][$j];
+        $secondaryDiagonalSum += $matrix[$row][$matrixSize - $row - 1];
     }
 
-    return abs($left - $right);
+    return abs($primaryDiagonalSum - $secondaryDiagonalSum);
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$n = intval(trim(fgets(STDIN)));
-
-$array = array();
-
-for ($i = 0; $i < $n; $i++) {
-    $temp = rtrim(fgets(STDIN));
-
-    $array[] = array_map('intval', preg_split('/ /', $temp, -1, PREG_SPLIT_NO_EMPTY));
-}
-
-$result = diagonalDifference($array);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
