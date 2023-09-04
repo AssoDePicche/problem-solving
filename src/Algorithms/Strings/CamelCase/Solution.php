@@ -1,16 +1,6 @@
 <?php
 
-function camelCase(string $s)
+function camelCase(string $string): int
 {
-    return preg_match_all('/[A-Z]/', $s) + 1;
+    return preg_match_all('/[A-Z]/', $string) + 1;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$s = rtrim(fgets(STDIN), "\r\n");
-
-$result = camelcase($s);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
