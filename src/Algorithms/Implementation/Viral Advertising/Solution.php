@@ -1,28 +1,22 @@
 <?php
 
-function viralAdvertising(int $day): int
+define('INITIAL_NUMBER_OF_RECIPIENTS', 5);
+
+define('NUMBER_OF_FRIENDS_TO_SHARE_PER_DAY', 3);
+
+function viralAdvertising(int $dayNumber): int
 {
-    $likes = $cumulative = 0;
+    $cumulativeLikes = 0;
 
-    $recipients = 5;
+    $sharedRecipients = INITIAL_NUMBER_OF_RECIPIENTS;
 
-    for ($currentDay = 1; $currentDay <= $day; $currentDay++) {
-        $likes = floor($recipients / 2);
+    for ($currentDay = 1; $currentDay <= $dayNumber; ++$currentDay) {
+        $likesInCurrentDay = (int) floor($sharedRecipients / 2);
 
-        $recipients = $likes * 3;
+        $sharedRecipients = $likesInCurrentDay * NUMBER_OF_FRIENDS_TO_SHARE_PER_DAY;
 
-        $cumulative += $likes;
+        $cumulativeLikes += $likesInCurrentDay;
     }
 
-    return $cumulative;
+    return $cumulativeLikes;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$n = intval(trim(fgets(STDIN)));
-
-$result = viralAdvertising($n);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
