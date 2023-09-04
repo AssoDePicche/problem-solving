@@ -2,19 +2,15 @@
 
 define('MIN_PASSWORD_LENGTH', 6);
 
-function minimumNumber(int $length, string $password): int
+function minimumNumber(int $passwordLength, string $password): int
 {
     $charsToAdd = 0;
 
-    !preg_match('/[a-z]/', $password) && $charsToAdd++;
+    $requiredPatterns = ['/[a-z]/', '/[A-Z]/', '/[0-9]/', '/[!@#$%^&*()\-+]/'];
 
-    !preg_match('/[A-Z]/', $password) && $charsToAdd++;
+    foreach ($requiredPatterns as $requiredPattern) {
+        !preg_match($requiredPattern, $password) && ++$charsToAdd;
+    }
 
-    !preg_match('/[0-9]/', $password) && $charsToAdd++;
-
-    !preg_match('/[!@#$%^&*()\-+]/', $password) && $charsToAdd++;
-
-    $matchPasswordSize = (($charsToAdd + $length) >= MIN_PASSWORD_LENGTH);
-
-    return $matchPasswordSize ? $charsToAdd : MIN_PASSWORD_LENGTH - $length;
+    return max($charsToAdd, (MIN_PASSWORD_LENGTH - $passwordLength));
 }
