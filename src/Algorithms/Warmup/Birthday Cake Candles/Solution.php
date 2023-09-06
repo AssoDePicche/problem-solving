@@ -1,28 +1,14 @@
 <?php
 
-function birthdayCakeCandles(array $candles): int
+function birthdayCakeCandles(array $candleHeights): int
 {
-    $tallest = 0;
+    $numberOfCandlesThatAreTallest = 0;
 
-    $max = max($candles);
+    $tallestCandleHeight = max($candleHeights);
 
-    foreach ($candles as $candle) {
-        $candle === $max && $tallest++;
+    foreach ($candleHeights as $candleHeight) {
+        $candleHeight === $tallestCandleHeight && ++$numberOfCandlesThatAreTallest;
     }
 
-    return $tallest;
+    return $numberOfCandlesThatAreTallest;
 }
-
-$fptr = fopen(getenv('OUTPUT_PATH'), 'w');
-
-$count = intval(trim(fgets(STDIN)));
-
-$temp = rtrim(fgets(STDIN));
-
-$candles = array_map('intval', preg_split('/ /', $temp, -1, PREG_SPLIT_NO_EMPTY));
-
-$result = birthdayCakeCandles($candles);
-
-fwrite($fptr, $result . PHP_EOL);
-
-fclose($fptr);
